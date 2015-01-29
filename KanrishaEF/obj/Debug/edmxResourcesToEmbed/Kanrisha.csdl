@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KanrishaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="KanrishaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TB_Role" EntityType="KanrishaModel.TB_Role" />
+    <EntitySet Name="TB_User" EntityType="KanrishaModel.TB_User" />
+    <EntitySet Name="TB_UserProfile" EntityType="KanrishaModel.TB_UserProfile" />
+    <AssociationSet Name="FK_TB_UserProfile_TB_Role" Association="KanrishaModel.FK_TB_UserProfile_TB_Role">
+      <End Role="TB_Role" EntitySet="TB_Role" />
+      <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_UserProfile_TB_User" Association="KanrishaModel.FK_TB_UserProfile_TB_User">
+      <End Role="TB_User" EntitySet="TB_User" />
+      <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_User_TB_Role" Association="KanrishaModel.FK_TB_User_TB_Role">
+      <End Role="TB_Role" EntitySet="TB_Role" />
+      <End Role="TB_User" EntitySet="TB_User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TB_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Role" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TB_UserProfile" Relationship="KanrishaModel.FK_TB_UserProfile_TB_Role" FromRole="TB_Role" ToRole="TB_UserProfile" />
+    <NavigationProperty Name="TB_User" Relationship="KanrishaModel.FK_TB_User_TB_Role" FromRole="TB_Role" ToRole="TB_User" />
+  </EntityType>
+  <EntityType Name="TB_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Active" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TB_UserProfile" Relationship="KanrishaModel.FK_TB_UserProfile_TB_User" FromRole="TB_User" ToRole="TB_UserProfile" />
+    <Property Type="Int32" Name="Role" />
+    <NavigationProperty Name="TB_Role" Relationship="KanrishaModel.FK_TB_User_TB_Role" FromRole="TB_User" ToRole="TB_Role" />
+  </EntityType>
+  <EntityType Name="TB_UserProfile">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Type="Int32" Name="ProfileId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
+    <Property Type="Int32" Name="UserId" />
+    <Property Type="Int32" Name="RoleId" />
+    <NavigationProperty Name="TB_Role" Relationship="KanrishaModel.FK_TB_UserProfile_TB_Role" FromRole="TB_UserProfile" ToRole="TB_Role" />
+    <NavigationProperty Name="TB_User" Relationship="KanrishaModel.FK_TB_UserProfile_TB_User" FromRole="TB_UserProfile" ToRole="TB_User" />
+  </EntityType>
+  <Association Name="FK_TB_UserProfile_TB_Role">
+    <End Type="KanrishaModel.TB_Role" Role="TB_Role" Multiplicity="0..1" />
+    <End Type="KanrishaModel.TB_UserProfile" Role="TB_UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="TB_UserProfile">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_UserProfile_TB_User">
+    <End Type="KanrishaModel.TB_User" Role="TB_User" Multiplicity="0..1" />
+    <End Type="KanrishaModel.TB_UserProfile" Role="TB_UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TB_UserProfile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_User_TB_Role">
+    <End Type="KanrishaModel.TB_Role" Role="TB_Role" Multiplicity="0..1" />
+    <End Type="KanrishaModel.TB_User" Role="TB_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="TB_User">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,97 @@
+﻿@model Kanrisha.Models.LoginModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@*
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<section id="loginForm">
+<h2>Use a local account to log in.</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+            <li>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    <p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>
+}
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+*@
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @*@Html.AntiForgeryToken()*@
+    
+
+<div class="login">
+    <div class="widget_header">
+        <h4 class="widget_header_title wwIcon i_16_login">
+            Login</h4>
+    </div>
+    <div id="loginForm" class="widget_contents lgNoPadding">
+        
+        <div class="line_grid">
+            <div class="g_2 g_2M">
+                <span class="label">E-mail</span>@ViewBag.error</div>
+            <div class="g_10 g_10M">
+           @* @Html.TextBoxFor(m => m.UserName, new { @class = "simple_field tooltip", title = "Your e-mail", placeholder = "Enter your e-mail here", name = "email" })*@
+                <input class="simple_field tooltip" title="Your e-mail" type="text" placeholder="Enter your e-mail here"
+                    name="UserName"></div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="line_grid">
+            <div class="g_2 g_2M">
+                <span class="label">Pass</span></div>
+            <div class="g_10 g_10M">
+                <input class="simple_field tooltip" title="Your Password" type="password" name="password"
+                    value="">
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        
+        <div class="line_grid">
+            <div class="g_6">
+                <input class="submitIt simple_buttons" value="Log In" type="submit">
+            </div>
+            <div class="clear">
+                @Html.ValidationSummary(true)
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+}

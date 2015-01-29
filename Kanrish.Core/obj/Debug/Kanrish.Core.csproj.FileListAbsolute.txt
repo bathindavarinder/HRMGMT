@@ -1,0 +1,10 @@
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\Kanrish.Core.dll.config
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\Kanrish.Core.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\Kanrish.Core.pdb
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\EntityFramework.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\KanrishaEF.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\KanrishaEF.pdb
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\bin\Debug\EntityFramework.xml
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\obj\Debug\Kanrish.Core.csprojResolveAssemblyReference.cache
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\obj\Debug\Kanrish.Core.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrish.Core\obj\Debug\Kanrish.Core.pdb

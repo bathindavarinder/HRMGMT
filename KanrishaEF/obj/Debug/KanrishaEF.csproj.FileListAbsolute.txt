@@ -1,0 +1,6 @@
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\bin\Debug\KanrishaEF.dll.config
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\bin\Debug\KanrishaEF.dll
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\bin\Debug\KanrishaEF.pdb
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\obj\Debug\KanrishaEF.dll
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\obj\Debug\KanrishaEF.pdb
+F:\Karisha\kanrisha\Kanrisha\KanrishaEF\obj\Debug\KanrishaEF.csprojResolveAssemblyReference.cache

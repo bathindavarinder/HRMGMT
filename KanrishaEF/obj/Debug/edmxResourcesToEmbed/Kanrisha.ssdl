@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KanrishaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="KanrishaModelStoreContainer">
+    <EntitySet Name="TB_Role" EntityType="KanrishaModel.Store.TB_Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TB_User" EntityType="KanrishaModel.Store.TB_User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TB_UserProfile" EntityType="KanrishaModel.Store.TB_UserProfile" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_TB_User_TB_Role" Association="KanrishaModel.Store.FK_TB_User_TB_Role">
+      <End Role="TB_Role" EntitySet="TB_Role" />
+      <End Role="TB_User" EntitySet="TB_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_UserProfile_TB_Role" Association="KanrishaModel.Store.FK_TB_UserProfile_TB_Role">
+      <End Role="TB_Role" EntitySet="TB_Role" />
+      <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_UserProfile_TB_User" Association="KanrishaModel.Store.FK_TB_UserProfile_TB_User">
+      <End Role="TB_User" EntitySet="TB_User" />
+      <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TB_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TB_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="int" />
+  </EntityType>
+  <EntityType Name="TB_UserProfile">
+    <Key>
+      <PropertyRef Name="ProfileId" />
+    </Key>
+    <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <Association Name="FK_TB_User_TB_Role">
+    <End Role="TB_Role" Type="KanrishaModel.Store.TB_Role" Multiplicity="0..1" />
+    <End Role="TB_User" Type="KanrishaModel.Store.TB_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="TB_User">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_UserProfile_TB_Role">
+    <End Role="TB_Role" Type="KanrishaModel.Store.TB_Role" Multiplicity="0..1" />
+    <End Role="TB_UserProfile" Type="KanrishaModel.Store.TB_UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="TB_UserProfile">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_UserProfile_TB_User">
+    <End Role="TB_User" Type="KanrishaModel.Store.TB_User" Multiplicity="0..1" />
+    <End Role="TB_UserProfile" Type="KanrishaModel.Store.TB_UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="TB_UserProfile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

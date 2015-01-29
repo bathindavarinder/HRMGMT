@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KanrishaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="KanrishaModelStoreContainer">
+          <EntitySet Name="TB_Role" EntityType="KanrishaModel.Store.TB_Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TB_User" EntityType="KanrishaModel.Store.TB_User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TB_UserProfile" EntityType="KanrishaModel.Store.TB_UserProfile" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_TB_User_TB_Role" Association="KanrishaModel.Store.FK_TB_User_TB_Role">
+            <End Role="TB_Role" EntitySet="TB_Role" />
+            <End Role="TB_User" EntitySet="TB_User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_UserProfile_TB_Role" Association="KanrishaModel.Store.FK_TB_UserProfile_TB_Role">
+            <End Role="TB_Role" EntitySet="TB_Role" />
+            <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_UserProfile_TB_User" Association="KanrishaModel.Store.FK_TB_UserProfile_TB_User">
+            <End Role="TB_User" EntitySet="TB_User" />
+            <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TB_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TB_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Active" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_UserProfile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <Association Name="FK_TB_User_TB_Role">
+          <End Role="TB_Role" Type="KanrishaModel.Store.TB_Role" Multiplicity="0..1" />
+          <End Role="TB_User" Type="KanrishaModel.Store.TB_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TB_User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_UserProfile_TB_Role">
+          <End Role="TB_Role" Type="KanrishaModel.Store.TB_Role" Multiplicity="0..1" />
+          <End Role="TB_UserProfile" Type="KanrishaModel.Store.TB_UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TB_UserProfile">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_UserProfile_TB_User">
+          <End Role="TB_User" Type="KanrishaModel.Store.TB_User" Multiplicity="0..1" />
+          <End Role="TB_UserProfile" Type="KanrishaModel.Store.TB_UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TB_UserProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KanrishaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="KanrishaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_Role" EntityType="KanrishaModel.TB_Role" />
+          <EntitySet Name="TB_User" EntityType="KanrishaModel.TB_User" />
+          <EntitySet Name="TB_UserProfile" EntityType="KanrishaModel.TB_UserProfile" />
+          <AssociationSet Name="FK_TB_UserProfile_TB_Role" Association="KanrishaModel.FK_TB_UserProfile_TB_Role">
+            <End Role="TB_Role" EntitySet="TB_Role" />
+            <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_UserProfile_TB_User" Association="KanrishaModel.FK_TB_UserProfile_TB_User">
+            <End Role="TB_User" EntitySet="TB_User" />
+            <End Role="TB_UserProfile" EntitySet="TB_UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TB_User_TB_Role" Association="KanrishaModel.FK_TB_User_TB_Role">
+            <End Role="TB_Role" EntitySet="TB_Role" />
+            <End Role="TB_User" EntitySet="TB_User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TB_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Role" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_UserProfile" Relationship="KanrishaModel.FK_TB_UserProfile_TB_Role" FromRole="TB_Role" ToRole="TB_UserProfile" />
+          <NavigationProperty Name="TB_User" Relationship="KanrishaModel.FK_TB_User_TB_Role" FromRole="TB_Role" ToRole="TB_User" />
+        </EntityType>
+        <EntityType Name="TB_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Active" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_UserProfile" Relationship="KanrishaModel.FK_TB_UserProfile_TB_User" FromRole="TB_User" ToRole="TB_UserProfile" />
+          <Property Type="Int32" Name="Role" />
+          <NavigationProperty Name="TB_Role" Relationship="KanrishaModel.FK_TB_User_TB_Role" FromRole="TB_User" ToRole="TB_Role" />
+        </EntityType>
+        <EntityType Name="TB_UserProfile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Type="Int32" Name="ProfileId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedDate" Precision="3" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Int32" Name="RoleId" />
+          <NavigationProperty Name="TB_Role" Relationship="KanrishaModel.FK_TB_UserProfile_TB_Role" FromRole="TB_UserProfile" ToRole="TB_Role" />
+          <NavigationProperty Name="TB_User" Relationship="KanrishaModel.FK_TB_UserProfile_TB_User" FromRole="TB_UserProfile" ToRole="TB_User" />
+        </EntityType>
+        <Association Name="FK_TB_UserProfile_TB_Role">
+          <End Type="KanrishaModel.TB_Role" Role="TB_Role" Multiplicity="0..1" />
+          <End Type="KanrishaModel.TB_UserProfile" Role="TB_UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TB_UserProfile">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_UserProfile_TB_User">
+          <End Type="KanrishaModel.TB_User" Role="TB_User" Multiplicity="0..1" />
+          <End Type="KanrishaModel.TB_UserProfile" Role="TB_UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TB_UserProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TB_User_TB_Role">
+          <End Type="KanrishaModel.TB_Role" Role="TB_Role" Multiplicity="0..1" />
+          <End Type="KanrishaModel.TB_User" Role="TB_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="TB_User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping CdmEntityContainer="KanrishaEntities" StorageEntityContainer="KanrishaModelStoreContainer">
+          <EntitySetMapping Name="TB_Role">
+            <EntityTypeMapping TypeName="KanrishaModel.TB_Role">
+              <MappingFragment StoreEntitySet="TB_Role">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_User">
+            <EntityTypeMapping TypeName="KanrishaModel.TB_User">
+              <MappingFragment StoreEntitySet="TB_User">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_UserProfile">
+            <EntityTypeMapping TypeName="KanrishaModel.TB_UserProfile">
+              <MappingFragment StoreEntitySet="TB_UserProfile">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Kanrisha">
+        <EntityTypeShape EntityType="KanrishaModel.TB_Role" Width="1.5" PointX="5.375" PointY="8.375" />
+        <EntityTypeShape EntityType="KanrishaModel.TB_User" Width="1.5" PointX="0.5" PointY="8" />
+        <EntityTypeShape EntityType="KanrishaModel.TB_UserProfile" Width="1.5" PointX="2.875" PointY="7.25" />
+        <AssociationConnector Association="KanrishaModel.FK_TB_UserProfile_TB_Role" />
+        <AssociationConnector Association="KanrishaModel.FK_TB_UserProfile_TB_User" />
+        <AssociationConnector Association="KanrishaModel.FK_TB_User_TB_Role" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanrisha</title>
+    <!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="../Javascript/Flot/excanvas.js"></script>
+	<![endif]-->
+    <!-- The Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Oswald|Droid+Sans:400,700" rel="stylesheet">
+    <!-- The Main CSS File -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Kjquery")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <!-- Top Panel -->
+    <div class="top_panel">
+ 	</div>
+    <div class="wrapper contents_wrapper">
+        @RenderBody()
+    </div>
+</body>
+</html>

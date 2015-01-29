@@ -1,0 +1,10 @@
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\Kanrisha.Services.dll.config
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\Kanrisha.Services.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\Kanrisha.Services.pdb
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\EntityFramework.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\KanrishaEF.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\KanrishaEF.pdb
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\bin\Debug\EntityFramework.xml
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\obj\Debug\Kanrisha.Services.csprojResolveAssemblyReference.cache
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\obj\Debug\Kanrisha.Services.dll
+F:\Karisha\kanrisha\Kanrisha\Kanrisha.Services\obj\Debug\Kanrisha.Services.pdb
